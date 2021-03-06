@@ -57,7 +57,6 @@ extension TestDateInRegion_Create {
         ("testDateInRegion_DateBySet", testDateInRegion_DateBySet),
         ("testDateInRegion_RandomDatesInRange", testDateInRegion_RandomDatesInRange),
         ("testDateInRegion_RandomDatesBackToDays", testDateInRegion_RandomDatesBackToDays),
-        ("testDateInRegion_EnumareDates", testDateInRegion_EnumareDates),
         ("testDateInRegion_oldestAndNewestAndSortsIn", testDateInRegion_oldestAndNewestAndSortsIn)
     ]
 }
@@ -85,10 +84,7 @@ extension TestFormatters {
         ("testISOFormatter", testISOFormatter),
         ("testTZInISOParser", testTZInISOParser),
         ("testRSSAltLocale", testRSSAltLocale),
-        ("testTimeInterval_Clock", testTimeInterval_Clock),
         ("testFormatterCustom", testFormatterCustom),
-        ("testTimeInterval_FormatterUnits", testTimeInterval_FormatterUnits),
-        ("testTimeInterval_Formatter", testTimeInterval_Formatter),
         ("testColloquialFormatter", testColloquialFormatter),
         ("testISOParser", testISOParser)
     ]

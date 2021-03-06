@@ -453,18 +453,6 @@ class TestFormatters: XCTestCase {
 		XCTAssertNotNil(date2, "Wrong RSS Alt Date region")
 	}
 
-	func testTimeInterval_Clock() {
-		let value = (2.hours + 5.minutes).timeInterval.toClock()
-		XCTAssert(value == "02:05:00", "Failed to format clock")
-		#if os(Linux)
-		let zeroBehavior = DateComponentsFormatter.ZeroFormattingBehavior(rawValue: 14)
-		let value2 = (4.minutes + 50.minutes).timeInterval.toClock(zero: zeroBehavior)
-		XCTAssert(value2 == "54:00", "Failed to format clock")
-		#else
-		let value2 = (4.minutes + 50.minutes).timeInterval.toClock(zero: DateComponentsFormatter.ZeroFormattingBehavior.dropAll)
-		XCTAssert(value2 == "54", "Failed to format clock")
-		#endif
-	}
 
 	func testFormatterCustom() {
 		let rome = Region(calendar: Calendars.gregorian, zone: Zones.europeRome, locale: Locales.italian)
@@ -473,30 +461,6 @@ class TestFormatters: XCTestCase {
 		let regionFormat = date.toFormat("MMM dd yyyy")
 		XCTAssert( fixedFormat == "Jan 15 2015", "Failed to format with fixed locale")
 		XCTAssert( regionFormat == "gen 15 2015", "Failed to format with standard locale")
-	}
-
-	func testTimeInterval_FormatterUnits() {
-		// for TimeInterval
-		let values = (36.hours + 2.days + 1.weeks).timeInterval.toUnits([.day, .hour])
-		XCTAssert(values[.hour] == 12 && values[.day] == 10, "Failed to extract day components")
-
-		let singleValue = (1.days).timeInterval.toUnit(.minute)
-		XCTAssert(singleValue == 1440, "Failed to extract single date component")
-	}
-
-	func testTimeInterval_Formatter() {
-		let value1 = (2.hours + 5.minutes + 32.seconds).timeInterval.toString(options: {
-			$0.unitsStyle = .full
-			$0.collapsesLargestUnit = false
-			$0.allowsFractionalUnits = true
-			$0.locale = Locales.english
-		})
-		let value2 = (5.hours + 2.days).timeInterval.toString(options: {
-			$0.unitsStyle = .abbreviated
-			$0.locale = Locales.english
-		})
-		XCTAssert(value1 == "2 hours, 5 minutes, 32 seconds", "Failed to format interval to string")
-		XCTAssert(value2 == "2d 5h", "Failed to format interval to string")
 	}
 
 	func testColloquialFormatter() {
